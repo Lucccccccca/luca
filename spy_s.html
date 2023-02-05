@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+      background-color: black;
+      animation: background-animation 10s linear infinite;
+  }
+
+      @keyframes background-animation {
+      0% {
+        background-color: black;
+      }
+        50% {
+        background-color: gray;
+      }
+      100% {
+        background-color: black;
+      }
+  }
+
+      #currently-playing {
+        text-align: center;
+        margin-top: 50px;
+      }
+      img {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+      }
+      h2 {
+        margin-top: 20px;
+        font-size: 36px;
+      }
+      p {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="currently-playing">
+      <img id="cover-art" src="" alt="Cover Art">
+      <h2 id="song-title"></h2>
+      <p id="artist-name"></p>
+    </div>
+    <script>
+      $.ajax({
+        url: "https://api.spotify.com/v1/me/player/currently-playing",
+        type: "GET",
+        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + 'BQD3ocbkuk7Kor4bZug4_SNOmVoTiO3EDBtx4WMOe-PJxJvVbe0m6lYI_HXT_jGNj2yjgiLbJIGEIvln1NoFlPjuKKREbug9yxzcASp4UNcSGIHPziyQkKK86lE9Dg8qrewfdNOXizubyGOcM_gosIj6jctrf1eog69Ksn0Zxy3o6x3JujhJ7g1UuIaAOKr8Bv3AyrJi-cGkZvLqsjPPDrthTzZrpBoVsYkW3QBSXfwc-8xNMQBInxwnpG8GCULglMINoyc_5rmGrQjfz1Wp0OY1RdLxSy08Yo_SAeQ5bv5cZ50PY6T1qy9D70TixueLuB0n_FBZpJb5cPPuYsqAsvOy2XJHTA');},
+        success: function(data) {
+          $("#cover-art").attr("src", data.item.album.images[0].url);
+          $("#song-title").html(data.item.name);
+          $("#artist-name").html("by " + data.item.artists[0].name);
+        }
+      });
+    </script>
+  </body>
+</html>
