@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "craftvibe",
+  "version": "${version}",
+  "name": "CraftVibe",
+  "description": "Spawn-Insel mit One-Way-Elytra, /afk -> Spectator, Teams, Perms-GUI, Custom Advancements & Rezepte",
+  "authors": ["Luca"],
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "main": ["dev.craftvibe.CraftVibe"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "fabric-api": "*",
+    "minecraft": "1.21.1"
+  },
+  "mixins": ["craftvibe.mixins.json"]
+}
